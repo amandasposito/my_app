@@ -1,0 +1,43 @@
+{
+  "results": {
+    "@attr": {},
+    "opensearch:Query": {
+      "#text": "",
+      "role": "request",
+      "startPage": "1"
+    },
+    "opensearch:itemsPerPage": "20",
+    "opensearch:startIndex": "0",
+    "opensearch:totalResults": "51473",
+    "trackmatches": {
+      "track": [
+        {
+          "artist": "The Kooks",
+          "image": [
+            {
+              "#text": "https://lastfm.freetls.fastly.net/i/u/34s/2a96cbd8b46e442fc41c2b86b821562f.png",
+              "size": "small"
+            },
+            {
+              "#text": "https://lastfm.freetls.fastly.net/i/u/64s/2a96cbd8b46e442fc41c2b86b821562f.png",
+              "size": "medium"
+            },
+            {
+              "#text": "https://lastfm.freetls.fastly.net/i/u/174s/2a96cbd8b46e442fc41c2b86b821562f.png",
+              "size": "large"
+            },
+            {
+              "#text": "https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png",
+              "size": "extralarge"
+            }
+          ],
+          "listeners": "851783",
+          "mbid": "c9b89088-01cd-4d98-a1f4-3e4a00519320",
+          "name": "Seaside",
+          "streamable": "FIXME",
+          "url": "https://www.last.fm/music/The+Kooks/_/Seaside"
+        }
+      ]
+    }
+  }
+}
