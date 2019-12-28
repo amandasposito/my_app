@@ -1,5 +1,5 @@
 defmodule MyApp.Lastfm.Client do
-  @moduledoc"""
+  @moduledoc """
   Search tracks
 
   https://www.last.fm/api/show/track.search
@@ -13,8 +13,10 @@ defmodule MyApp.Lastfm.Client do
     case response do
       {:ok, %{status_code: 200, body: body}} ->
         {:ok, response(body)}
+
       {:ok, %{status_code: 404}} ->
         {:not_found, "Not found"}
+
       {_, response} ->
         {:error, response}
     end
@@ -36,6 +38,8 @@ defmodule MyApp.Lastfm.Client do
   end
 
   defp search_url(url, term) do
-    URI.encode("#{url}?method=track.search&track=#{term}&api_key=#{System.get_env("LASTFM_API_KEY")}&format=json")
+    URI.encode(
+      "#{url}?method=track.search&track=#{term}&api_key=#{System.get_env("LASTFM_API_KEY")}&format=json"
+    )
   end
 end

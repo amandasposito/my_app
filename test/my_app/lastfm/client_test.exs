@@ -11,19 +11,19 @@ defmodule MyApp.Lastfm.ClientTest do
 
   describe "search/2" do
     test "searches tracks by the term", %{bypass: bypass} do
-      Bypass.expect bypass, fn conn ->
+      Bypass.expect(bypass, fn conn ->
         Plug.Conn.resp(conn, 200, payload())
-      end
+      end)
 
       response = Client.search("The Kooks", endpoint_url(bypass.port))
 
       assert {:ok,
               [
                 %{
-                   "artist" => "The Kooks",
-                   "name" => "Seaside",
-                   "url" => "https://www.last.fm/music/The+Kooks/_/Seaside"
-                 }
+                  "artist" => "The Kooks",
+                  "name" => "Seaside",
+                  "url" => "https://www.last.fm/music/The+Kooks/_/Seaside"
+                }
               ]} = response
     end
   end
