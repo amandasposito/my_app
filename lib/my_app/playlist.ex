@@ -1,12 +1,12 @@
 defmodule MyApp.Playlist do
-  alias MyApp.Lastfm.Client
+  @music Application.get_env(:my_app, :music)
 
   def artist(name) do
-    {:ok, songs} = Client.search(name)
+    {:ok, songs} = @music.search(name)
 
     %{
-      name: "This is #{name}",
-      songs: songs
+      "name" => "This is #{name}",
+      "songs" => songs
     }
   end
 end

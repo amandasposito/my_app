@@ -16,3 +16,5 @@ config :my_app, MyAppWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :my_app, :music, MyApp.MusicMock

@@ -6,6 +6,14 @@ defmodule MyApp.Lastfm.ClientTest do
   setup do
     bypass = Bypass.open()
 
+    original_url = Application.get_env(:my_app, :lastfm_api)
+
+    Application.put_env(:my_app, :lastfm_api, endpoint_url(bypass.port))
+
+    on_exit(fn ->
+      Application.put_env(:my_app, :lastfm_api, original_url)
+    end)
+
     {:ok, bypass: bypass}
   end
 
@@ -15,7 +23,7 @@ defmodule MyApp.Lastfm.ClientTest do
         Plug.Conn.resp(conn, 200, payload())
       end)
 
-      response = Client.search("The Kooks", endpoint_url(bypass.port))
+      response = Client.search("The Kooks")
 
       assert {:ok,
               [

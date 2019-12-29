@@ -5,10 +5,10 @@ defmodule MyApp.Lastfm.Client do
   https://www.last.fm/api/show/track.search
   """
 
-  @api_url "https://ws.audioscrobbler.com/2.0/"
+  @behaviour MyApp.Music
 
-  def search(term, url \\ @api_url) do
-    response = Mojito.request(method: :get, url: search_url(url, term))
+  def search(term) do
+    response = Mojito.request(method: :get, url: search_url(lastfm_api_url(), term))
 
     case response do
       {:ok, %{status_code: 200, body: body}} ->
@@ -20,6 +20,10 @@ defmodule MyApp.Lastfm.Client do
       {_, response} ->
         {:error, response}
     end
+  end
+
+  defp lastfm_api_url do
+    Application.get_env(:my_app, :lastfm_api)
   end
 
   defp response(body) do
@@ -37,9 +41,11 @@ defmodule MyApp.Lastfm.Client do
     end)
   end
 
-  defp search_url(url, term) do
+  defp search_url(url, term, limit \\ 20) do
     URI.encode(
-      "#{url}?method=track.search&track=#{term}&api_key=#{System.get_env("LASTFM_API_KEY")}&format=json"
+      "#{url}?method=track.search&track=#{term}&api_key=#{System.get_env("LASTFM_API_KEY")}&format=json&limit=#{
+        limit
+      }"
     )
   end
 end
